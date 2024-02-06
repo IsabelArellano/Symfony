@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -23,24 +24,58 @@ class Users
     /**
      * @var string|null
      *
-     * @ORM\Column(name="name_user", type="string", length=45, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="name_user", type="string", length=45, nullable=true)
      */
-    private $nameUser = 'NULL';
+    private $nameUser;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="email", type="string", length=45, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="surname_user", type="string", length=45, nullable=true)
      */
-    private $email = 'NULL';
+    private $surnameUser;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="password", type="string", length=100, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="nickname_user", type="string", length=45, nullable=true)
      */
-    private $password = 'NULL';
+    private $nicknameUser;
 
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="age_user", type="integer", nullable=true)
+     */
+    private $ageUser;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="email_user", type="string", length=45, nullable=true, options={"default"="NULL"})
+     */
+    private $emailUser = 'NULL';
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="phone_user", type="integer", nullable=true)
+     */
+    private $phoneUser;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="password", type="string", length=100, nullable=true)
+     */
+    private $password;
+
+    /**
+     * @var resource|null
+     *
+     * @ORM\Column(name="image_user", type="blob", nullable=true)
+     */
+    private $imageUser;
     public function getIdUser(): ?int
     {
         return $this->idUser;
@@ -58,14 +93,62 @@ class Users
         return $this;
     }
 
-    public function getEmail(): ?string
+    public function getSurnameUser(): ?string
     {
-        return $this->email;
+        return $this->surnameUser;
     }
 
-    public function setEmail(?string $email): self
+    public function setSurnameUser(?string $surnameUser): self
     {
-        $this->email = $email;
+        $this->surnameUser = $surnameUser;
+
+        return $this;
+    }
+
+    public function getNicknameUser(): ?string
+    {
+        return $this->nicknameUser;
+    }
+
+    public function setNicknameUser(?string $nicknameUser): self
+    {
+        $this->nicknameUser = $nicknameUser;
+
+        return $this;
+    }
+
+    public function getAgeUser(): ?int
+    {
+        return $this->ageUser;
+    }
+
+    public function setAgeUser(?int $ageUser): self
+    {
+        $this->ageUser = $ageUser;
+
+        return $this;
+    }
+
+    public function getEmailUser(): ?string
+    {
+        return $this->emailUser;
+    }
+
+    public function setEmailUser(?string $emailUser): self
+    {
+        $this->emailUser = $emailUser;
+
+        return $this;
+    }
+
+    public function getPhoneUser(): ?int
+    {
+        return $this->phoneUser;
+    }
+
+    public function setPhoneUser(?int $phoneUser): self
+    {
+        $this->phoneUser = $phoneUser;
 
         return $this;
     }
@@ -81,7 +164,16 @@ class Users
 
         return $this;
     }
+
+    public function getImageUser()
+    {
+        return $this->imageUser;
+    }
+
+    public function setImageUser($imageUser): self
+    {
+        $this->imageUser = $imageUser;
+
+        return $this;
+    }
 }
-
-
-?>

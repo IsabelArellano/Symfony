@@ -3,10 +3,8 @@
 namespace App\Controller;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Message;
-
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class AboutUsContactController extends AbstractController
@@ -22,7 +20,7 @@ class AboutUsContactController extends AbstractController
     }
 
   
-#[Route('/aboutUs', name: 'aboutUs')]
+#[Route('/server/aboutUs', name: 'aboutUs')]
 public function getAboutUs(ManagerRegistry $managerRegistry): JsonResponse
 {
     $aboutUsMessages = $this->getMessagesByType($managerRegistry, 'aboutus');
@@ -33,7 +31,7 @@ public function getAboutUs(ManagerRegistry $managerRegistry): JsonResponse
     ]);
 }
 
-#[Route('/contact', name: 'contact')]
+#[Route('/server/contact', name: 'contact')]
 public function getContact(ManagerRegistry $managerRegistry): JsonResponse
 {
     $contactMessages = $this->getMessagesByType($managerRegistry, 'contact');
@@ -43,7 +41,11 @@ public function getContact(ManagerRegistry $managerRegistry): JsonResponse
         'messages' => $contactMessages,
     ]);
 }
+
+
 }
+
+
 
 
 
