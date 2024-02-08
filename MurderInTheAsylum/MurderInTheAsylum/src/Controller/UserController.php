@@ -64,34 +64,45 @@ class UserController extends AbstractController
 
         return $this->json(['message' => 'Usuario creado con éxito'], Response::HTTP_CREATED);
     }
-
     #[Route('/server/user/login', name: 'user_login', methods: ['POST'])]
     public function loginUser(Request $request, EntityManagerInterface $entityManager): Response
     {
         $requestData = json_decode($request->getContent(), true);
-
+    
         $nickname = $requestData['nickname_user'] ?? null;
         $password = $requestData['password'] ?? null;
-
+    
         // Verificar que se proporcionó el apodo y la contraseña
         if (!$nickname || !$password) {
             return $this->json(['error' => 'Se requiere el nickname y la contraseña del usuario'], Response::HTTP_BAD_REQUEST);
         }
-
+    
         $userRepository = $entityManager->getRepository(Users::class);
         $user = $userRepository->findOneBy(['nicknameUser' => $nickname]);
-
+    
         if (!$user) {
-            throw new NotFoundHttpException('Usuario no encontrado');
+            return $this->json(['error' => 'Usuario no encontrado'], Response::HTTP_NOT_FOUND);
         }
-
-        // Validar la contraseña manualmente
+    
+        // Validar la contraseña
         if ($user->getPassword() !== $password) {
             return $this->json(['error' => 'Credenciales inválidas'], Response::HTTP_UNAUTHORIZED);
         }
-
-        // Si llegamos aquí, el inicio de sesión fue exitoso
-        return $this->json(['message' => 'Inicio de sesión exitoso'], Response::HTTP_OK);
+    
+        // Obtener los datos del usuario y manejar la imagen
+        $userData = [
+            'id_user' => $user->getIdUser(),
+            'name_user' => $user->getNameUser(),
+            'surname_user' => $user->getSurnameUser(),
+            'nickname_user' => $user->getNicknameUser(),
+            'age_user' => $user->getAgeUser(),
+            'email_user' => $user->getEmailUser(),
+            'phone_user' => $user->getPhoneUser(),
+            'password' => $user->getPassword(),
+            'image_user' => $user->getImageUser() ? base64_encode(stream_get_contents($user->getImageUser())) : null,
+        ];
+    
+        return $this->json(['message' => 'Inicio de sesión exitoso', 'user' => $userData], Response::HTTP_OK);
     }
 
     #[Route('/server/user/edit/{nickname}', name: 'user_edit', methods: ['PUT'])]
