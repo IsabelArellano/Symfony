@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Controller;
 
 use App\Entity\Characters;
@@ -51,4 +50,3 @@ class CharactersController extends AbstractController
 ?>
 
 
-?>

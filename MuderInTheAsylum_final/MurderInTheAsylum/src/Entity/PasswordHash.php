@@ -28,5 +28,20 @@ class PasswordHash
      */
     private $passwordHashed = 'NULL';
 
+    public function getIdPasswordHash(): ?int
+    {
+        return $this->idPasswordHash;
+    }
 
+    public function getPasswordHashed(): ?string
+    {
+        return $this->passwordHashed;
+    }
+
+    public function setPasswordHashed(?string $passwordHashed): self
+    {
+        $this->passwordHashed = $passwordHashed;
+
+        return $this;
+    }
 }

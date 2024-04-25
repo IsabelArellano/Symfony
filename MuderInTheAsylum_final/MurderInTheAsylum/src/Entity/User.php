@@ -127,14 +127,14 @@ class User implements PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getNicknameUsern(): ?string
+    public function getNicknameUser(): ?string
     {
         return $this->nicknameUser;
     }
 
-    public function setNicknameUser(?string $nicknameUsern): self
+    public function setNicknameUser(?string $nicknameUser): self
     {
-        $this->nicknameUser = $nicknameUsern;
+        $this->nicknameUser = $nicknameUser;
 
         return $this;
     }
