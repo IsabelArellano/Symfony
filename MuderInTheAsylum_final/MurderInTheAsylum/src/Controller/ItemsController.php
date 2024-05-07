@@ -17,7 +17,7 @@ class ItemsController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/server/items', name: 'items_index')]
+    #[Route('/server/items', name: 'items_list', methods: ['GET'])]
     public function index(): JsonResponse
     {
         // Obtener el repositorio de la entidad Items

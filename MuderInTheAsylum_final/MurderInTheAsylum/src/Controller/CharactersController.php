@@ -17,7 +17,7 @@ class CharactersController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('server/characters', name: 'characters')]
+    #[Route('server/characters', name: 'characters_list', methods: ['GET'])]
     public function index(): JsonResponse
     {
         // Obtener el repositorio de la entidad Characters

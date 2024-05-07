@@ -78,25 +78,13 @@ class User implements PasswordAuthenticatedUserInterface
      */
     private $imageUser;
 
+   
     /**
-     * @var UserType|null
-     *
-     * @ORM\ManyToOne(targetEntity="UserType")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_type", referencedColumnName="id_type")
-     * })
+     * @ORM\Column(type="boolean")
      */
-    private $idType;
+    private $typeUser;
 
-    /**
-     * @var PasswordHash|null
-     *
-     * @ORM\ManyToOne(targetEntity="PasswordHash")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_password_hash", referencedColumnName="id_password_hash")
-     * })
-     */
-    private $idPasswordHash;
+   
 
     public function getIdUser(): ?int
     {
@@ -175,10 +163,7 @@ class User implements PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    // public function getPassword(): ?string
-    // {
-    //     return $this->password;
-    // }
+ 
 
     public function setPassword(?string $password): self
     {
@@ -200,29 +185,6 @@ class User implements PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getIdType(): ?UserType
-    {
-        return $this->idType;
-    }
-
-    public function setIdType(?UserType $idType): self
-    {
-        $this->idType = $idType;
-
-        return $this;
-    }
-
-    public function getIdPasswordHash(): ?PasswordHash
-    {
-        return $this->idPasswordHash;
-    }
-
-    public function setIdPasswordHash(?PasswordHash $idPasswordHash): self
-    {
-        $this->idPasswordHash = $idPasswordHash;
-
-        return $this;
-    }
 
 
     public function getPassword(): ?string
@@ -244,5 +206,22 @@ class User implements PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getTypeUser(): ?bool
+    {
+        return $this->typeUser;
+    }
+
+    /**
+     * Set the value of typeUser
+     *
+     * @return  self
+     */ 
+    public function setTypeUser(bool $typeUser): self
+    {
+        $this->typeUser = $typeUser;
+
+        return $this;
     }
 }
