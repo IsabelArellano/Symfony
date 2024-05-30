@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user", indexes={@ORM\Index(name="id_type", columns={"id_type"}), @ORM\Index(name="id_password_hash", columns={"id_password_hash"})})
  * @ORM\Entity
  */
-class User implements PasswordAuthenticatedUserInterface
+class User 
 {
     /**
      * @var int
@@ -164,6 +164,11 @@ class User implements PasswordAuthenticatedUserInterface
     }
 
  
+    
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
 
     public function setPassword(?string $password): self
     {
@@ -185,28 +190,6 @@ class User implements PasswordAuthenticatedUserInterface
         return $this;
     }
 
-
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function getSalt()
-    {
-        // not needed when using the "bcrypt" algorithm in security.yaml
-    }
-
-    public function getUsername(): string
-    {
-        return $this->nicknameUser;
-    }
-
-    public function eraseCredentials()
-    {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
-    }
 
     public function getTypeUser(): ?bool
     {

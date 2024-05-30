@@ -1,9 +1,10 @@
 <?php
 
+
 namespace App\Entity;
 
-
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\User;
 
 /**
  * Points
@@ -30,7 +31,7 @@ class Points
     private $points = NULL;
 
     /**
-     * @var \User
+     * @var User
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
@@ -39,5 +40,61 @@ class Points
      */
     private $idUser;
 
+    // Getters and Setters
 
+    /**
+     * Get the value of idPoint
+     *
+     * @return int
+     */
+    public function getIdPoint(): int
+    {
+        return $this->idPoint;
+    }
+
+    /**
+     * Get the value of points
+     *
+     * @return int|null
+     */
+    public function getPoints(): ?int
+    {
+        return $this->points;
+    }
+
+    /**
+     * Set the value of points
+     *
+     * @param int|null $points
+     * @return self
+     */
+    public function setPoints(?int $points): self
+    {
+        $this->points = $points;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of idUser
+     *
+     * @return User
+     */
+    public function getIdUser(): User
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * Set the value of idUser
+     *
+     * @param User $idUser
+     * @return self
+     */
+    public function setIdUser(User $idUser): self
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
 }
